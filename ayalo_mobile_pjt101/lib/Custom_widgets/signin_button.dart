@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget SignInButton(BuildContext context,
-    {required String text, required Function onPress}) {
+    {required String text, required VoidCallback onPressed}) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 67,
@@ -10,7 +10,7 @@ Widget SignInButton(BuildContext context,
       color: Theme.of(context).primaryColor,
     ),
     child: TextButton(
-      onPressed: () => onPress,
+      onPressed: onPressed,
       child: Text(
         text,
         style: TextStyle(

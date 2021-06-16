@@ -74,7 +74,7 @@ class SignUp extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25),
-            SignInButton(context, text: 'Register', onPress: () => null),
+            SignInButton(context, text: 'Register', onPressed: () => null),
             SizedBox(height: 25),
             GestureDetector(
               onTap: () => Navigator.of(context).pop(),

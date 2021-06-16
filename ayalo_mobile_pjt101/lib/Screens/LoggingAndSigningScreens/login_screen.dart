@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
-              SignInButton(context, text: 'Log In', onPress: () => null),
+              SignInButton(context, text: 'Log In', onPressed: () => null),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => Navigator.of(context).push(

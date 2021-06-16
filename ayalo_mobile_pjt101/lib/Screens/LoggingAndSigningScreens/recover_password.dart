@@ -1,21 +1,50 @@
+import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
 import 'package:flutter/material.dart';
 
-class RecoverPassword extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false),
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: _SetPassword(),
-    );
+class _SetNewPassword {
+  StreamController<bool> _streamController = new StreamController<bool>();
+
+  Stream<bool> get setNewPasswordStream => _streamController.stream;
+  StreamSink<bool> get setNewPasswordSink => _streamController.sink;
+
+  void dispose() {
+    _streamController.close();
   }
 }
 
-class _SendEmail extends StatelessWidget {
+class RecoverPassword extends StatefulWidget {
+  @override
+  _RecoverPasswordState createState() => _RecoverPasswordState();
+}
+
+class _RecoverPasswordState extends State<RecoverPassword> {
+  late _SetNewPassword _password;
+  @override
+  void initState() {
+    super.initState();
+    _password = new _SetNewPassword();
+    _password.setNewPasswordSink.add(false);
+  }
+
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<bool>(
+      stream: _password.setNewPasswordStream,
+      builder: (context, snapshot) {
+        print(snapshot.hasData);
+        print(snapshot.data);
+        return Scaffold(
+          appBar: AppBar(automaticallyImplyLeading: false),
+          backgroundColor: Theme.of(context).backgroundColor,
+          body: snapshot.data! ? _setPassword() : _sendEmail(),
+        );
+      },
+    );
+  }
+
+  Widget _sendEmail() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
@@ -47,16 +76,17 @@ class _SendEmail extends StatelessWidget {
                 suffixIcon: Icon(Icons.done)),
           ),
           SizedBox(height: 31),
-          SignInButton(context, text: 'Send Link', onPress: () => null),
+          SignInButton(
+            context,
+            text: 'Send Link',
+            onPressed: () => _password.setNewPasswordSink.add(true),
+          ),
         ],
       ),
     );
   }
-}
 
-class _SetPassword extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  Widget _setPassword() {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
@@ -82,9 +112,15 @@ class _SetPassword extends StatelessWidget {
           SizedBox(height: 31),
           passwordForm(hint: 'Confirm new password'),
           SizedBox(height: 31),
-          SignInButton(context, text: 'Reset Password', onPress: () => null),
+          SignInButton(context, text: 'Reset Password', onPressed: () => null),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _password.dispose();
   }
 }
