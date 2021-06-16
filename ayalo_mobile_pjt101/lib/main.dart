@@ -1,4 +1,4 @@
-import 'package:ayalo_mobile_pjt101/Screens/login_screen.dart';
+import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +13,10 @@ class AyaloMain extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xff53b175),
         backgroundColor: Color(0xffF5F5F5),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xffF5F5F5),
+          elevation: 0,
+        ),
       ),
       home: LoginScreen(),
     );

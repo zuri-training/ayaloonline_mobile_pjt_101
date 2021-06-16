@@ -1,3 +1,4 @@
+import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
 import 'package:flutter/material.dart';
 
@@ -50,21 +51,7 @@ class SignUp extends StatelessWidget {
               ),
             ),
             SizedBox(height: 32),
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                labelStyle:
-                    TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
-                suffixIcon: IconButton(
-                  onPressed: () => null,
-                  icon: Icon(
-                    Icons.remove_red_eye,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            ),
+            passwordForm(hint: 'Input Password'),
             SizedBox(height: 37),
             Wrap(
               children: [
@@ -87,7 +74,7 @@ class SignUp extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25),
-            SignInButton(context, text: 'Register'),
+            SignInButton(context, text: 'Register', onPress: () => null),
             SizedBox(height: 25),
             GestureDetector(
               onTap: () => Navigator.of(context).pop(),

@@ -1,5 +1,7 @@
+import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
-import 'package:ayalo_mobile_pjt101/Screens/signup_screen.dart';
+import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
+import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -35,28 +37,27 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: '********',
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
-                    onPressed: () => null,
-                  ),
-                ),
-              ),
+              passwordForm(hint: 'Input Password'),
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.topRight,
-                child: Text(
-                  'Forgot Password?',
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RecoverPassword(),
+                    ),
+                  ),
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 30),
-              SignInButton(context, text: 'Log In'),
+              SignInButton(context, text: 'Log In', onPress: () => null),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => Navigator.of(context).push(

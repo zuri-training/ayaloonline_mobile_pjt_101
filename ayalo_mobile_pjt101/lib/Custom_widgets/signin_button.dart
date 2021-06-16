@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget SignInButton(BuildContext context, {required String text}) {
+Widget SignInButton(BuildContext context,
+    {required String text, required Function onPress}) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 67,
@@ -9,7 +10,7 @@ Widget SignInButton(BuildContext context, {required String text}) {
       color: Theme.of(context).primaryColor,
     ),
     child: TextButton(
-      onPressed: () => null,
+      onPressed: () => onPress,
       child: Text(
         text,
         style: TextStyle(
