@@ -1,3 +1,5 @@
+import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
+import 'package:ayalo_mobile_pjt101/Screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -5,6 +7,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(14.0),
         child: Container(
@@ -26,7 +29,10 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 40),
               TextFormField(
-                decoration: InputDecoration(hintText: 'user@gmail.com', labelText: 'Email',),
+                decoration: InputDecoration(
+                  hintText: 'user@gmail.com',
+                  labelText: 'Email',
+                ),
               ),
               SizedBox(height: 16),
               TextFormField(
@@ -50,26 +56,14 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 67,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(19)),
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: TextButton(
-                    onPressed: () => null,
-                    child: Text(
-                      'Log In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 18,
-                      ),
-                    )),
-              ),
+              SignInButton(context, text: 'Log In'),
               SizedBox(height: 25),
               GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SignUp(),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -77,14 +71,14 @@ class LoginScreen extends StatelessWidget {
                       'Don\'t have an account?',
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     Text(
                       'Sign Up',
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w800,
                         color: Theme.of(context).primaryColor,
                       ),
                     ),

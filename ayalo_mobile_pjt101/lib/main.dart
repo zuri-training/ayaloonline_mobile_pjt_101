@@ -12,6 +12,7 @@ class AyaloMain extends StatelessWidget {
       title: 'Ayalo',
       theme: ThemeData(
         primaryColor: Color(0xff53b175),
+        backgroundColor: Color(0xffF5F5F5),
       ),
       home: LoginScreen(),
     );
