@@ -1,5 +1,6 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
+import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/continue_registration.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
@@ -74,7 +75,15 @@ class SignUp extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25),
-            SignInButton(context, text: 'Register', onPressed: () => null),
+            SignInButton(
+              context,
+              text: 'Register',
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Registration(),
+                ),
+              ),
+            ),
             SizedBox(height: 25),
             GestureDetector(
               onTap: () => Navigator.of(context).pop(),
