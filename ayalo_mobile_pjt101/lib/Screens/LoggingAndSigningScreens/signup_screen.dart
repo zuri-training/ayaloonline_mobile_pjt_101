@@ -51,18 +51,18 @@ class SignUp extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('By continuing you agree to our',
+                  Text('By continuing you agree to our ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Gilroy')),
-                  Text('Terms of Service',
+                  Text('Terms of Service ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Gilroy',
                           color: Theme.of(context).primaryColor)),
-                  Text('and',
+                  Text('and ',
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

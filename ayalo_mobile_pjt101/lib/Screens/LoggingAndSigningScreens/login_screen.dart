@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Don\'t have an account?',
+                      'Don\'t have an account? ',
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'Gilroy',

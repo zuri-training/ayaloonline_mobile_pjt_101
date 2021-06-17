@@ -114,4 +114,10 @@ class _RegistrationState extends State<Registration> {
       ],
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pages.dispose();
+  }
 }
