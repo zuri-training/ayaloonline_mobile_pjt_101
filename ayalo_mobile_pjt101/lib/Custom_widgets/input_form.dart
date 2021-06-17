@@ -7,7 +7,8 @@ Widget inputForm(String labelText, String hint, Widget? icon) {
       hintText: hint,
       labelStyle: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.w800,
+        fontFamily: 'Gilroy',
+        fontWeight: FontWeight.w700,
       ),
       suffixIcon: icon,
     ),

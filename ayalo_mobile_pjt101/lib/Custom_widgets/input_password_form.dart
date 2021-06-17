@@ -5,7 +5,8 @@ Widget passwordForm({required String hint}) {
     obscureText: true,
     decoration: InputDecoration(
       labelText: 'Password',
-      labelStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+      labelStyle: TextStyle(
+          fontWeight: FontWeight.w700, fontSize: 16, fontFamily: 'Gilroy'),
       hintText: hint,
       suffixIcon: IconButton(
         icon: Icon(

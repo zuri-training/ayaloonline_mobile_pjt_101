@@ -16,6 +16,7 @@ Widget SignInButton(BuildContext context,
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w800,
+          fontFamily: 'Gilroy',
           fontSize: 18,
         ),
       ),

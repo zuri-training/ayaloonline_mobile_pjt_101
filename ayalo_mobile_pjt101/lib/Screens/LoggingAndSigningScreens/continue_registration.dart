@@ -39,6 +39,7 @@ class _RegistrationState extends State<Registration> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(automaticallyImplyLeading: false),
+            backgroundColor: Theme.of(context).backgroundColor,
             body: Padding(
               padding: const EdgeInsets.all(14.0),
               child: SingleChildScrollView(
@@ -50,15 +51,16 @@ class _RegistrationState extends State<Registration> {
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w800,
+                        fontFamily: 'Gilroy',
                       ),
                     ),
                     SizedBox(height: 15),
                     Text(
                       'Enter your credentials to continue',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Gilroy'),
                     ),
                     SizedBox(height: 25),
                     snapshot.data! ? _secondPage(context) : _firstPage(context),

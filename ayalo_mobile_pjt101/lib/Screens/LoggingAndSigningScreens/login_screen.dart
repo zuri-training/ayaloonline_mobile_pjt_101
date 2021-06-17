@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
@@ -22,21 +25,19 @@ class LoginScreen extends StatelessWidget {
                 'Log in',
                 style: TextStyle(
                   fontSize: 26,
-                  fontWeight: FontWeight.w800,
+                  fontFamily: 'Gilroy',
                 ),
               ),
               SizedBox(height: 15),
               Text(
                 'Enter your emails and password',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Gilroy',
+                    fontWeight: FontWeight.w700),
               ),
               SizedBox(height: 40),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'user@gmail.com',
-                  labelText: 'Email',
-                ),
-              ),
+              inputForm('Email', 'user@domain.com', null),
               SizedBox(height: 16),
               passwordForm(hint: 'Input Password'),
               SizedBox(height: 20),
@@ -52,7 +53,8 @@ class LoginScreen extends StatelessWidget {
                     'Forgot Password?',
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Gilroy',
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
@@ -81,14 +83,16 @@ class LoginScreen extends StatelessWidget {
                       'Don\'t have an account?',
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w800,
+                        fontFamily: 'Gilroy',
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
                       'Sign Up',
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w800,
+                        fontFamily: 'Gilroy',
+                        fontWeight: FontWeight.w700,
                         color: Theme.of(context).primaryColor,
                       ),
                     ),
