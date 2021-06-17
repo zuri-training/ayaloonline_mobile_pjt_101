@@ -32,6 +32,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^1.1.8+4
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: images/ayalologo.png
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,6 +67,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: fonts/Gilroy-Regular.ttf
+        - asset: fonts/Gilroy-Bold.ttf
+          weight: 700
   # fonts:
   #   - family: Schyler
   #     fonts:
