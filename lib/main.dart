@@ -9,6 +9,7 @@ class AyaloMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ayalo',
       theme: ThemeData(
         primaryColor: Color(0xff53b175),

@@ -14,7 +14,7 @@ class CompleteSignUpAlert extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Icon(
-                FontAwesomeIcons.bicycle,
+                FontAwesomeIcons.bell,
                 color: kGreenColor,
                 size: 51,
               ),
