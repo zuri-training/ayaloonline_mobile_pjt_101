@@ -1,8 +1,13 @@
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/login_screen.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(AyaloMain());
+  runApp(ChangeNotifierProvider(
+    create: (_) => HomePageIndex(),
+    child: AyaloMain(),
+  ));
 }
 
 class AyaloMain extends StatelessWidget {
