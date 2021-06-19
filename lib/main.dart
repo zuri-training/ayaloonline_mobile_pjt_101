@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (_) => HomePageIndex(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => HomePageIndex(),
+      ),
+    ],
     child: AyaloMain(),
   ));
 }
