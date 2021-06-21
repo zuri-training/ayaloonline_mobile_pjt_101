@@ -1,7 +1,7 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/cart_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/explore_screen.dart';
-import 'package:ayalo_mobile_pjt101/Screens/profile_screen.dart';
+import 'package:ayalo_mobile_pjt101/Screens/Profile/profile_screen.dart';
 import 'package:ayalo_mobile_pjt101/components/alerts.dart';
 import 'package:ayalo_mobile_pjt101/components/container_selector.dart';
 import 'package:ayalo_mobile_pjt101/components/search.dart';
@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
       } else if (index == 2) {
         return CartListScreen();
       } else if (index == 3) {
-        return ProfileDetailsScreen();
+        return ProfileHome();
       } else {
         return HomeScreen();
       }
