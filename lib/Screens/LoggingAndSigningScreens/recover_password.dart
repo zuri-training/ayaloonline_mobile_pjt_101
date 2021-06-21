@@ -84,7 +84,6 @@ class _RecoverPasswordState extends State<RecoverPassword> {
         SizedBox(height: 31),
         AyaloCustomButton(
           context,
-          color: Theme.of(context).primaryColor,
           text: 'Send Link',
           onPressed: () => _password.setNewPasswordSink.add(true),
         ),
@@ -108,10 +107,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
         SizedBox(height: 31),
         passwordForm(hint: 'Confirm new password'),
         SizedBox(height: 31),
-        AyaloCustomButton(context,
-            color: Theme.of(context).primaryColor,
-            text: 'Reset Password',
-            onPressed: () => null),
+        AyaloCustomButton(
+          context,
+          text: 'Reset Password',
+          onPressed: () => null,
+        ),
       ],
     );
   }

@@ -87,7 +87,6 @@ class _RegistrationState extends State<Registration> {
         SizedBox(height: 77),
         AyaloCustomButton(context,
             text: 'Continue',
-            color: Theme.of(context).primaryColor,
             onPressed: () => _pages.switchPagesSink.add(true)),
       ],
     );
@@ -104,7 +103,6 @@ class _RegistrationState extends State<Registration> {
         SizedBox(height: 77),
         AyaloCustomButton(
           context,
-          color: Theme.of(context).primaryColor,
           text: 'Sign Up',
           onPressed: () => Navigator.of(context).push(
             MaterialPageRoute(

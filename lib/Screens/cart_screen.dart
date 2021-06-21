@@ -33,10 +33,8 @@ class CartListScreen extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.all(30.0),
-            child: AyaloCustomButton(context,
-                color: Theme.of(context).primaryColor,
-                text: 'Check Out',
-                onPressed: () {}),
+            child:
+                AyaloCustomButton(context, text: 'Check Out', onPressed: () {}),
           ),
         )
       ],

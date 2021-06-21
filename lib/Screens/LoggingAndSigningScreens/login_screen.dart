@@ -62,7 +62,6 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 30),
               AyaloCustomButton(
                 context,
-                color: Theme.of(context).primaryColor,
                 text: 'Log In',
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(

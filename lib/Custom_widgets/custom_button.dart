@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget AyaloCustomButton(BuildContext context,
-    {required String text,
-    required Color color,
-    required VoidCallback onPressed}) {
+    {required String text, Color? color, required VoidCallback onPressed}) {
   var fontColor;
-  color == Theme.of(context).primaryColor
+  color == null
       ? fontColor = Colors.white
       : fontColor = Theme.of(context).primaryColor;
   return Container(
@@ -14,7 +11,7 @@ Widget AyaloCustomButton(BuildContext context,
     height: 67,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(19)),
-      color: color,
+      color: color == null ? Theme.of(context).primaryColor : color,
     ),
     child: TextButton(
       onPressed: onPressed,

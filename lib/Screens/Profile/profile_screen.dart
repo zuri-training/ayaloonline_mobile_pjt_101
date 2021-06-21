@@ -108,7 +108,6 @@ class ProfileHome extends StatelessWidget {
                   AyaloCustomButton(
                     context,
                     text: 'Become a Lesse',
-                    color: Theme.of(context).primaryColor,
                     onPressed: () => null,
                   ),
                   SizedBox(height: 12),
