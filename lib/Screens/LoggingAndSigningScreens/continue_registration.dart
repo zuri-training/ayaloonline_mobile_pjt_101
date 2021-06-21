@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
-import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,7 +85,8 @@ class _RegistrationState extends State<Registration> {
         SizedBox(height: 32),
         inputForm('Gender', 'Male', Icon(Icons.expand_more)),
         SizedBox(height: 77),
-        SignInButton(context,
+        AyaloCustomButton(context,
+            color: Theme.of(context).primaryColor,
             text: 'Continue',
             onPressed: () => _pages.switchPagesSink.add(true)),
       ],
@@ -101,8 +102,9 @@ class _RegistrationState extends State<Registration> {
         SizedBox(height: 32),
         inputForm('Business Name', 'enter your business name', null),
         SizedBox(height: 77),
-        SignInButton(
+        AyaloCustomButton(
           context,
+          color: Theme.of(context).primaryColor,
           text: 'Sign Up',
           onPressed: () => Navigator.of(context).push(
             MaterialPageRoute(
