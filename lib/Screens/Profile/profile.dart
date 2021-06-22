@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/drop_down.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:flutter/material.dart';
 
@@ -118,15 +117,7 @@ class _ProfileState extends State<Profile> {
         inputForm(
           'Method of Verification',
           'BVN',
-          Icon(
-            Icons.keyboard_arrow_down_outlined,
-          ),
-        ),
-        SizedBox(height: 32),
-        inputForm(
-          'Bank Verification Number',
-          'enter your BVN',
-          Icon(Icons.keyboard_arrow_down_outlined),
+          DropDown(['BVN', 'NIN']),
         ),
         SizedBox(height: 72),
         AyaloCustomButton(
