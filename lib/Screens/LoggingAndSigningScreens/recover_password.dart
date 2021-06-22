@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
-import 'package:ayalo_mobile_pjt101/Custom_widgets/signin_button.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class _SetNewPassword {
@@ -82,7 +82,7 @@ class _RecoverPasswordState extends State<RecoverPassword> {
               suffixIcon: Icon(Icons.done)),
         ),
         SizedBox(height: 31),
-        SignInButton(
+        AyaloCustomButton(
           context,
           text: 'Send Link',
           onPressed: () => _password.setNewPasswordSink.add(true),
@@ -107,7 +107,11 @@ class _RecoverPasswordState extends State<RecoverPassword> {
         SizedBox(height: 31),
         passwordForm(hint: 'Confirm new password'),
         SizedBox(height: 31),
-        SignInButton(context, text: 'Reset Password', onPressed: () => null),
+        AyaloCustomButton(
+          context,
+          text: 'Reset Password',
+          onPressed: () => null,
+        ),
       ],
     );
   }
