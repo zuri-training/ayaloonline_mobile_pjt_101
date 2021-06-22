@@ -78,6 +78,7 @@ class SignUp extends StatelessWidget {
               SizedBox(height: 25),
               AyaloCustomButton(
                 context,
+                color: Theme.of(context).primaryColor,
                 text: 'Register',
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(
