@@ -14,6 +14,7 @@ Widget AyaloCustomButton(BuildContext context,
       color: color == null ? Theme.of(context).primaryColor : color,
     ),
     child: TextButton(
+      style: ButtonStyle(),
       onPressed: onPressed,
       child: Text(
         text,

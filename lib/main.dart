@@ -1,5 +1,7 @@
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/login_screen.dart';
+import 'package:ayalo_mobile_pjt101/Screens/landing_page.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +10,9 @@ void main() {
     providers: [
       ChangeNotifierProvider(
         create: (_) => HomePageIndex(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => LogStatus(),
       ),
     ],
     child: AyaloMain(),
@@ -28,7 +33,7 @@ class AyaloMain extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: LoginScreen(),
+      home: LandingPage(),
     );
   }
 }

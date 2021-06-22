@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Delivery extends StatelessWidget {
+class Payments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
-          child: Text('Delivery screen'),
+          child: Text('My Payments screen'),
         ),
       ),
     );

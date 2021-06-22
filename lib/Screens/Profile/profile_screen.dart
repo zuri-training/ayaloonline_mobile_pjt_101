@@ -8,13 +8,17 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/profile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class ProfileHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final logStatus = Provider.of<LogStatus>(context);
     return Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(14.0),
         child: Stack(
           children: [
             Column(
@@ -78,11 +82,11 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
-                  icon: Icons.location_pin,
-                  title: 'Delivery Address',
+                  icon: FontAwesomeIcons.moneyBill,
+                  title: 'My Payments',
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Delivery(),
+                      builder: (context) => Payments(),
                     ),
                   ),
                 ),
@@ -115,7 +119,7 @@ class ProfileHome extends StatelessWidget {
                     context,
                     text: 'Logout',
                     color: Theme.of(context).backgroundColor,
-                    onPressed: () => null,
+                    onPressed: () => logStatus.loggedIn(false),
                   ),
                 ],
               ),
