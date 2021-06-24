@@ -30,42 +30,7 @@ class CartItem extends StatelessWidget {
                       SizedBox(
                         height: 8,
                       ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.all(13.0),
-                              child: Icon(
-                                FontAwesomeIcons.minus,
-                                size: 15,
-                                color: kGreenColor,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(13.0),
-                              child: Text('2'),
-                            ),
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: kGreenColor, width: 2),
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.all(13.0),
-                              child: Icon(
-                                FontAwesomeIcons.plus,
-                                size: 15,
-                                color: kGreenColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      AdditionButton()
                     ],
                   ),
                 )),
@@ -93,5 +58,50 @@ class CartItem extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+class AdditionButton extends StatelessWidget {
+  const AdditionButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Icon(
+              FontAwesomeIcons.minus,
+              size: 15,
+              color: kGreenColor,
+            ),
+          ),
+        ),
+        Container(
+          child: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Text('2'),
+          ),
+          decoration: BoxDecoration(
+              border: Border.all(color: kGreenColor, width: 2),
+              borderRadius: BorderRadius.circular(10)),
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Icon(
+              FontAwesomeIcons.plus,
+              size: 15,
+              color: kGreenColor,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
