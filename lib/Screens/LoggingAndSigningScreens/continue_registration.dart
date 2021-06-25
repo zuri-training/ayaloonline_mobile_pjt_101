@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
-import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class _SwitchPages {
   StreamController<bool> _switchPagesController = new StreamController<bool>();
@@ -36,8 +34,6 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-    final logStatus = Provider.of<LogStatus>(context);
-    print(logStatus.status);
     return StreamBuilder<bool>(
         stream: _pages.switchPagesStream,
         builder: (context, snapshot) {
@@ -67,9 +63,7 @@ class _RegistrationState extends State<Registration> {
                           fontFamily: 'Gilroy'),
                     ),
                     SizedBox(height: 25),
-                    snapshot.data!
-                        ? _secondPage(context, logStatus)
-                        : _firstPage(context),
+                    snapshot.data! ? _secondPage(context) : _firstPage(context),
                   ],
                 ),
               ),
@@ -98,7 +92,7 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  Widget _secondPage(BuildContext context, [LogStatus? logStatus]) {
+  Widget _secondPage(BuildContext context) {
     return Column(
       children: [
         inputForm('Occupation', 'enter your occupation', null),
@@ -110,11 +104,12 @@ class _RegistrationState extends State<Registration> {
         AyaloCustomButton(
           context,
           text: 'Sign Up',
-          onPressed: () {
-            int count = 0;
-            logStatus!.loggedIn(true);
-            Navigator.of(context).popUntil((route) => count++ == 2);
-          },
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              maintainState: false,
+              builder: (context) => Home(),
+            ),
+          ),
         ),
       ],
     );

@@ -107,11 +107,8 @@ class _RecoverPasswordState extends State<RecoverPassword> {
         SizedBox(height: 31),
         passwordForm(hint: 'Confirm new password'),
         SizedBox(height: 31),
-        AyaloCustomButton(
-          context,
-          text: 'Reset Password',
-          onPressed: () => null,
-        ),
+        AyaloCustomButton(context,
+            text: 'Reset Password', onPressed: () => null),
       ],
     );
   }

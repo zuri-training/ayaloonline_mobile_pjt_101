@@ -6,16 +6,12 @@ import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
-import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final logStatus = Provider.of<LogStatus>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
@@ -66,9 +62,12 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 30),
               AyaloCustomButton(
                 context,
-                color: Theme.of(context).primaryColor,
                 text: 'Log In',
-                onPressed: () => logStatus.loggedIn(true),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Home(),
+                  ),
+                ),
               ),
               SizedBox(height: 25),
               GestureDetector(
