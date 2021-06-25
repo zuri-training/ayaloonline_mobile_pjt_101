@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: non_constant_identifier_names
 Widget AyaloCustomButton(BuildContext context,
     {required String text, Color? color, required VoidCallback onPressed}) {
   var fontColor;

@@ -1,4 +1,4 @@
-import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
+// import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/profile_list_tile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/change_password.dart';
@@ -7,11 +7,14 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/notification.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/profile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
-import 'package:ayalo_mobile_pjt101/constants/colors.dart';
+// import 'package:ayalo_mobile_pjt101/Screens/my_equipment.dart';
+// import 'package:ayalo_mobile_pjt101/constants/colors.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
+import 'lessee_profile_screen.dart';
 
 class ProfileHome extends StatelessWidget {
   @override
@@ -30,8 +33,10 @@ class ProfileHome extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(right: 12.0),
                         width: 74,
-                        height: 104,
-                        color: Colors.pinkAccent,
+                        height: 74,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.grey.shade300),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,25 +108,33 @@ class ProfileHome extends StatelessWidget {
                 Divider(thickness: 0.5, height: 0.5),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AyaloCustomButton(
-                    context,
-                    text: 'Become a Lesse',
-                    onPressed: () => null,
-                  ),
-                  SizedBox(height: 12),
-                  AyaloCustomButton(
-                    context,
-                    text: 'Logout',
-                    color: Theme.of(context).backgroundColor,
-                    onPressed: () => logStatus.loggedIn(false),
-                  ),
-                ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AyaloCustomButton(context, text: 'Become a Lessee',
+                        onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LesseeProfileHome(),
+                        ),
+                      );
+                    }),
+                    SizedBox(height: 12),
+                    AyaloCustomButton(
+                      context,
+                      text: 'Logout',
+                      color: Theme.of(context).backgroundColor,
+                      onPressed: () => logStatus.loggedIn(false),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

@@ -25,6 +25,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     _pages = new _ProfileDetailPages();

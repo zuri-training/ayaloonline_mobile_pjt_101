@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final logStatus = Provider.of<LogStatus>(context);
     bool status = Provider.of<LogStatus>(context).status;
     return Scaffold(

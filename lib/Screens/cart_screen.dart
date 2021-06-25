@@ -1,6 +1,6 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/components/cart_card.dart';
-import 'package:ayalo_mobile_pjt101/constants/colors.dart';
+// import 'package:ayalo_mobile_pjt101/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 

@@ -1,8 +1,9 @@
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
-import 'package:ayalo_mobile_pjt101/services/star_service.dart';
+// import 'package:ayalo_mobile_pjt101/services/star_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// ignore: must_be_immutable
 class ItemSummaryCard extends StatelessWidget {
   final String itemName;
   final String leasingCompany;

@@ -1,4 +1,4 @@
-import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
+// import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/cart_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/explore_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/profile_screen.dart';

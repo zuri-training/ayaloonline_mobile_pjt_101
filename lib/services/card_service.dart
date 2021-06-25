@@ -1,8 +1,8 @@
-import 'dart:collection';
+// import 'dart:collection';
 
 import 'package:ayalo_mobile_pjt101/components/item_summary_card.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardManager {
   final List<ItemSummaryCard> items = [];

@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
-import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+// import 'package:ayalo_mobile_pjt101/Screens/home.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class _SwitchPages {
