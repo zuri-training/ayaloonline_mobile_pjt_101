@@ -18,10 +18,11 @@ class ProfileHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final logStatus = Provider.of<LogStatus>(context);
     return Padding(
-        padding: EdgeInsets.all(14.0),
-        child: Stack(
-          children: [
-            Column(
+      padding: EdgeInsets.all(14.0),
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -101,30 +102,33 @@ class ProfileHome extends StatelessWidget {
                   ),
                 ),
                 Divider(thickness: 0.5, height: 0.5),
+                SizedBox(height: 150),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AyaloCustomButton(
-                    context,
-                    text: 'Become a Lesse',
-                    onPressed: () => null,
-                  ),
-                  SizedBox(height: 12),
-                  AyaloCustomButton(
-                    context,
-                    text: 'Logout',
-                    color: Theme.of(context).backgroundColor,
-                    onPressed: () => logStatus.loggedIn(false),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ));
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AyaloCustomButton(
+                  context,
+                  text: 'Become a Lesse',
+                  onPressed: () => null,
+                ),
+                SizedBox(height: 12),
+                AyaloCustomButton(
+                  context,
+                  text: 'Logout',
+                  color: Theme.of(context).backgroundColor,
+                  onPressed: () => logStatus.loggedIn(false),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,5 @@
+import 'package:ayalo_mobile_pjt101/Screens/product_detail.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
-import 'package:ayalo_mobile_pjt101/services/star_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -143,69 +143,79 @@ class ItemSummaryCard extends StatelessWidget {
         ),
       ];
     }
-    return Container(
-      padding: EdgeInsets.all(15),
-      alignment: AlignmentDirectional.centerStart,
-      // height: 150,
-      width: 175,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Image.asset(
-          //be weary of this link as it might be different for you.
-          //it is mapped from the repo folders
-          'assets/images/img1.png', width: 170,
-        ),
-        Text(
-          itemName,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Leased By: $leasingCompany ',
-          style: TextStyle(
-            fontSize: 12,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-          child: Row(children: stars),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Row(
-          children: [
-            Text(
-              'N$price',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  fontFamily: 'Gilroy'),
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.all(15),
+        alignment: AlignmentDirectional.centerStart,
+        // height: 150,
+        width: 175,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Image.asset(
+            //be weary of this link as it might be different for you.
+            //it is mapped from the repo folders
+            'assets/images/img1.png', width: 170,
+          ),
+          Text(
+            itemName,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            'Leased By: $leasingCompany ',
+            style: TextStyle(
+              fontSize: 12,
             ),
-            SizedBox(
-              width: 18,
-            ),
-            SizedBox(
-              height: 40,
-              width: 40,
-              child: Material(
-                borderRadius: BorderRadius.circular(13),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 7),
-                  child: Icon(
-                    FontAwesomeIcons.shoppingCart,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                ),
-                color: kGreenColor,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Row(children: stars),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              Text(
+                'N$price',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    fontFamily: 'Gilroy'),
               ),
-            )
-          ],
-        )
-      ]),
-      decoration: BoxDecoration(
-        color: Color(0xffF2F3F2),
-        border: Border.all(width: 1, color: kGreenColor),
-        borderRadius: BorderRadius.circular(20.0),
+              SizedBox(
+                width: 18,
+              ),
+              SizedBox(
+                height: 40,
+                width: 40,
+                child: Material(
+                  borderRadius: BorderRadius.circular(13),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10, left: 7),
+                    child: Icon(
+                      FontAwesomeIcons.shoppingCart,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
+                  color: kGreenColor,
+                ),
+              )
+            ],
+          )
+        ]),
+        decoration: BoxDecoration(
+          color: Color(0xffF2F3F2),
+          border: Border.all(width: 1, color: kGreenColor),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
       ),
     );
   }
