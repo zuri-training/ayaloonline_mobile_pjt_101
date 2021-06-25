@@ -1,5 +1,5 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
-import 'package:ayalo_mobile_pjt101/components/cart_card.dart';
+//import 'package:ayalo_mobile_pjt101/components/cart_card.dart';
 import 'package:ayalo_mobile_pjt101/components/date_picker.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/profile_detail_state.dart';
@@ -141,7 +141,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(18.0),
-                              child: AdditionButton(),
+                              // child: AdditionButton(),
                             ),
                           ],
                         )
