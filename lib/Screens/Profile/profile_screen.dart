@@ -1,4 +1,3 @@
-import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/profile_list_tile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/change_password.dart';
