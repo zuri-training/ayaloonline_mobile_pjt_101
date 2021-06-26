@@ -54,7 +54,6 @@ class _DropDownState extends State<DropDown> {
             Text('Method of Verification'),
             DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                elevation: 0,
                 value: dropdownValue,
                 isExpanded: true,
                 icon: const Icon(Icons.keyboard_arrow_down_outlined),
