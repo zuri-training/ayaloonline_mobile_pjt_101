@@ -71,6 +71,7 @@ class _DropDownState extends State<DropDown> {
                 ],
               ),
             ),
+            Divider(height: 0.5, thickness: 0.7, color: Colors.black),
             SizedBox(height: 32),
             _toggle(),
           ],
