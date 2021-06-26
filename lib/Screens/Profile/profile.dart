@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/drop_down.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
@@ -36,15 +37,14 @@ class _ProfileState extends State<Profile> {
     return StreamBuilder<int>(
         stream: _pages.stream,
         builder: (context, snapshot) {
-          var child;
-          switch (snapshot.data) {
-            case 0:
-              child = _firstPage();
-              break;
-            case 1:
-              child = _secondPage();
-              break;
+          _toggle() {
+            if (snapshot.data == null)
+              return RefreshProgressIndicator();
+            else if (snapshot.data == 0)
+              return _firstPage();
+            else if (snapshot.data == 1) return _secondPage();
           }
+
           return Scaffold(
             appBar: AppBar(),
             body: Padding(
@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
                           fontFamily: 'Gilroy', fontWeight: FontWeight.w700),
                     ),
                     SizedBox(height: 32),
-                    child
+                    _toggle()
                   ],
                 ),
               ),

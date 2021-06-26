@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:flutter/material.dart';
 
@@ -35,38 +36,45 @@ class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(
-        stream: _dropDownState.stream,
-        builder: (context, snapshot) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Method of Verification'),
-              DropdownButton<String>(
-                elevation: 0,
-                value: dropdownValue,
-                isExpanded: true,
-                icon: const Icon(Icons.keyboard_arrow_down_outlined),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue!;
-                    _dropDownState.streamSink.add(dropdownValue);
-                  });
-                },
-                items: [
-                  DropdownMenuItem(
-                      child: Text(widget.values[0]), value: widget.values[0]),
-                  DropdownMenuItem(
-                      child: Text(widget.values[1]), value: widget.values[1])
-                ],
-              ),
-              SizedBox(height: 32),
-              snapshot.data! == widget.values[0]
-                  ? inputForm(
-                      'Bank Verification Number (BVN)', 'enter your BVN', null)
-                  : inputForm('National Identification Number (NIN)',
-                      'enter your NIN', null),
-            ],
-          );
-        });
+      stream: _dropDownState.stream,
+      builder: (context, snapshot) {
+        Widget _toggle() {
+          if (snapshot.data == widget.values[0])
+            return inputForm(
+                'Bank Verification Number (BVN)', 'enter your BVN', null);
+          else if (snapshot.data == widget.values[1])
+            return inputForm(
+                'National Identification Number (NIN)', 'enter your NIN', null);
+          return RefreshProgressIndicator();
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Method of Verification'),
+            DropdownButton<String>(
+              elevation: 0,
+              value: dropdownValue,
+              isExpanded: true,
+              icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                  _dropDownState.streamSink.add(dropdownValue);
+                });
+              },
+              items: [
+                DropdownMenuItem(
+                    child: Text(widget.values[0]), value: widget.values[0]),
+                DropdownMenuItem(
+                    child: Text(widget.values[1]), value: widget.values[1])
+              ],
+            ),
+            SizedBox(height: 32),
+            _toggle(),
+          ],
+        );
+      },
+    );
   }
 }
