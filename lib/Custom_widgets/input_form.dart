@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget inputForm(String labelText, String hint, Widget? icon) {
+Widget inputForm(String? labelText, String? hint, Widget? icon) {
   return TextFormField(
     decoration: InputDecoration(
       labelText: labelText,

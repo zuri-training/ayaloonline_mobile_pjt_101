@@ -52,23 +52,25 @@ class _DropDownState extends State<DropDown> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Method of Verification'),
-            DropdownButton<String>(
-              elevation: 0,
-              value: dropdownValue,
-              isExpanded: true,
-              icon: const Icon(Icons.keyboard_arrow_down_outlined),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                  _dropDownState.streamSink.add(dropdownValue);
-                });
-              },
-              items: [
-                DropdownMenuItem(
-                    child: Text(widget.values[0]), value: widget.values[0]),
-                DropdownMenuItem(
-                    child: Text(widget.values[1]), value: widget.values[1])
-              ],
+            DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                elevation: 0,
+                value: dropdownValue,
+                isExpanded: true,
+                icon: const Icon(Icons.keyboard_arrow_down_outlined),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue!;
+                    _dropDownState.streamSink.add(dropdownValue);
+                  });
+                },
+                items: [
+                  DropdownMenuItem(
+                      child: Text(widget.values[0]), value: widget.values[0]),
+                  DropdownMenuItem(
+                      child: Text(widget.values[1]), value: widget.values[1])
+                ],
+              ),
             ),
             SizedBox(height: 32),
             _toggle(),

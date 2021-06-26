@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/drop_down.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class _ProfileDetailPages {
   StreamController<int> _streamController = new StreamController<int>();
@@ -143,6 +145,7 @@ class _ProfileState extends State<Profile> {
 class _Done extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final homeIndex = Provider.of<HomePageIndex>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(14.0),
@@ -168,6 +171,7 @@ class _Done extends StatelessWidget {
                 onPressed: () {
                   var count = 0;
                   Navigator.of(context).popUntil((route) {
+                    homeIndex.setIndex(0);
                     return count++ == 2;
                   });
                 },
