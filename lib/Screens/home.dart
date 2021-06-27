@@ -1,4 +1,7 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
+import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
+import 'package:ayalo_mobile_pjt101/Screens/activity.dart';
+import 'package:ayalo_mobile_pjt101/Screens/add_lease_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/cart_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/explore_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/profile_screen.dart';
@@ -25,12 +28,21 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final indexState = Provider.of<HomePageIndex>(context);
     int index = Provider.of<HomePageIndex>(context).index;
+    bool isleasor = Provider.of<IsLeasor>(context).isLeassor;
     Widget toggle() {
-      if (index == 1) {
+      if (index == 1 && !isleasor) {
         return ExploreListScreen();
-      } else if (index == 2) {
+      } else if (index == 2 && !isleasor) {
         return CartListScreen();
-      } else if (index == 3) {
+      } else if (index == 3 && !isleasor) {
+        return ProfileHome();
+      } else if (index == 1 && isleasor) {
+        return RentScreen();
+      } else if (index == 2 && isleasor) {
+        return AddNewLeaseScreen();
+      } else if (index == 3 && isleasor) {
+        return ActivityScreen();
+      } else if (index == 4) {
         return ProfileHome();
       } else {
         return HomeScreen();
@@ -38,129 +50,9 @@ class _HomeState extends State<Home> {
     }
 
     return Scaffold(
-        bottomNavigationBar: Container(
-          height: 75,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    offset: Offset(0, 1),
-                    spreadRadius: 5,
-                    blurRadius: 5),
-              ],
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  indexState.setIndex(0);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.store,
-                        color: index == 0 ? kGreenColor : Colors.black,
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Home',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: index == 0 ? kGreenColor : Colors.black,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  indexState.setIndex(1);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.searchengin,
-                        color: index == 1 ? kGreenColor : Colors.black,
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Explore',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: index == 1 ? kGreenColor : Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  indexState.setIndex(2);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.shoppingCart,
-                        color: index == 2 ? kGreenColor : Colors.black,
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Cart',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: index == 2 ? kGreenColor : Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  indexState.setIndex(3);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.userCircle,
-                        color: index == 3 ? kGreenColor : Colors.black,
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Account',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: index == 3 ? kGreenColor : Colors.black,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        bottomNavigationBar: Provider.of<IsLeasor>(context).isLeassor
+            ? LeassorBottomNavbar(indexState: indexState, index: index)
+            : LeaseeBottomNavbar(indexState: indexState, index: index),
         appBar: AppBar(),
         body: SafeArea(
           child: toggle(),

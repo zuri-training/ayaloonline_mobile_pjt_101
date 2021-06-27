@@ -27,6 +27,8 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => ProfileDetailDelivery(),
       ),
+      ChangeNotifierProvider(create: (_) => VerificationChecker()),
+      ChangeNotifierProvider(create: (_) => IsLeasor()),
     ],
     child: AyaloMain(),
   ));

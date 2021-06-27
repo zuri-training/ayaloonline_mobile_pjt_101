@@ -8,7 +8,9 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/profile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/profile_detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +45,7 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
+                  color: Colors.black,
                   icon: Icons.person_pin,
                   title: 'Profile Details',
                   onTap: () => Navigator.of(context).push(
@@ -53,26 +56,30 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
+                  color: Colors.black,
                   icon: Icons.shopping_cart_outlined,
                   title: 'My Rents',
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Rents(),
+                      builder: (context) => RentScreen(),
                     ),
                   ),
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
-                  icon: Icons.verified_outlined,
+                  color: Provider.of<VerificationChecker>(context).getStatus
+                      ? Colors.green
+                      : Colors.black,
+                  icon: Icons.verified,
                   title: 'Verification',
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Verification(),
-                    ),
-                  ),
+                  onTap: () {
+                    Provider.of<VerificationChecker>(context, listen: false)
+                        .setStatus();
+                  },
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
+                  color: Colors.black,
                   icon: Icons.lock_outlined,
                   title: 'Change Password',
                   onTap: () => Navigator.of(context).push(
@@ -83,6 +90,7 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
+                  color: Colors.black,
                   icon: FontAwesomeIcons.moneyBill,
                   title: 'My Payments',
                   onTap: () => Navigator.of(context).push(
@@ -93,6 +101,7 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
+                  color: Colors.black,
                   icon: Icons.notifications_none_outlined,
                   title: 'Notification',
                   onTap: () => Navigator.of(context).push(
@@ -112,11 +121,15 @@ class ProfileHome extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                AyaloCustomButton(
-                  context,
-                  text: 'Become a Lesse',
-                  onPressed: () => null,
-                ),
+                Provider.of<IsLeasor>(context).isLeassor
+                    ? Container()
+                    : AyaloCustomButton(
+                        context,
+                        text: 'Become a Leassor',
+                        onPressed: () =>
+                            Provider.of<IsLeasor>(context, listen: false)
+                                .changeAccount(),
+                      ),
                 SizedBox(height: 12),
                 AyaloCustomButton(
                   context,

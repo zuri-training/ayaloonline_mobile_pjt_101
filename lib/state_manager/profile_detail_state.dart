@@ -58,3 +58,17 @@ class ProfileDetailDelivery with ChangeNotifier {
 
   String get getDelivery => _selectedDelivery;
 }
+
+class VerificationChecker with ChangeNotifier {
+  VerificationChecker();
+
+  bool _verified = true;
+
+  void setStatus() {
+    _verified = !_verified;
+
+    notifyListeners();
+  }
+
+  bool get getStatus => _verified;
+}

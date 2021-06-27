@@ -11,3 +11,16 @@ class HomePageIndex with ChangeNotifier {
 
   int get index => _index;
 }
+
+class IsLeasor with ChangeNotifier {
+  IsLeasor();
+  bool _isleassor = false;
+
+  void changeAccount() {
+    _isleassor = !_isleassor;
+    print(_isleassor);
+    notifyListeners();
+  }
+
+  bool get isLeassor => _isleassor;
+}
