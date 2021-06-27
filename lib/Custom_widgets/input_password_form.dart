@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget passwordForm({required String hint}) {
+Widget passwordForm(
+    {required String hint, required TextEditingController controller}) {
   return TextFormField(
+    controller: controller,
     obscureText: true,
     decoration: InputDecoration(
       labelText: 'Password',

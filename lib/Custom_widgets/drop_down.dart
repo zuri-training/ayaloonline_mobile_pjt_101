@@ -23,6 +23,7 @@ class DropDown extends StatefulWidget {
 class _DropDownState extends State<DropDown> {
   late String dropdownValue;
   late _DropdownState _dropDownState;
+  TextEditingController verifycon = TextEditingController();
 
   @override
   void initState() {
@@ -61,10 +62,10 @@ class _DropDownState extends State<DropDown> {
               ),
               SizedBox(height: 32),
               snapshot.data! == widget.values[0]
-                  ? inputForm(
-                      'Bank Verification Number (BVN)', 'enter your BVN', null)
+                  ? inputForm('Bank Verification Number (BVN)',
+                      'enter your BVN', null, verifycon)
                   : inputForm('National Identification Number (NIN)',
-                      'enter your NIN', null),
+                      'enter your NIN', null, verifycon),
             ],
           );
         });
