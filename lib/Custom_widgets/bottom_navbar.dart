@@ -185,7 +185,7 @@ class LeassorBottomNavbar extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    'Home',
+                    'Dashboard',
                     style: TextStyle(
                       fontSize: 12,
                       color: index == 0 ? kGreenColor : Colors.black,

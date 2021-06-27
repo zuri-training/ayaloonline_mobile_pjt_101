@@ -3,6 +3,7 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/activity.dart';
 import 'package:ayalo_mobile_pjt101/Screens/add_lease_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/cart_screen.dart';
+import 'package:ayalo_mobile_pjt101/Screens/dashboard_Screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/explore_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/profile_screen.dart';
 import 'package:ayalo_mobile_pjt101/components/alerts.dart';
@@ -44,19 +45,22 @@ class _HomeState extends State<Home> {
         return ActivityScreen();
       } else if (index == 4) {
         return ProfileHome();
+      } else if (index == 0 && isleasor) {
+        return DashboardScreen();
       } else {
         return HomeScreen();
       }
     }
 
     return Scaffold(
-        bottomNavigationBar: Provider.of<IsLeasor>(context).isLeassor
-            ? LeassorBottomNavbar(indexState: indexState, index: index)
-            : LeaseeBottomNavbar(indexState: indexState, index: index),
-        appBar: AppBar(),
-        body: SafeArea(
-          child: toggle(),
-        ));
+      bottomNavigationBar: Provider.of<IsLeasor>(context).isLeassor
+          ? LeassorBottomNavbar(indexState: indexState, index: index)
+          : LeaseeBottomNavbar(indexState: indexState, index: index),
+      appBar: AppBar(),
+      body: SafeArea(
+        child: toggle(),
+      ),
+    );
   }
 }
 
