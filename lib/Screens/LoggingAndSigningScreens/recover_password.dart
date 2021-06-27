@@ -21,6 +21,9 @@ class RecoverPassword extends StatefulWidget {
 
 class _RecoverPasswordState extends State<RecoverPassword> {
   late _SetNewPassword _password;
+  TextEditingController passcon = TextEditingController();
+  TextEditingController repasscon = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -103,9 +106,9 @@ class _RecoverPasswordState extends State<RecoverPassword> {
           ),
         ),
         SizedBox(height: 73),
-        passwordForm(hint: 'Input new password'),
+        passwordForm(hint: 'Input new password', controller: passcon),
         SizedBox(height: 31),
-        passwordForm(hint: 'Confirm new password'),
+        passwordForm(hint: 'Confirm new password', controller: repasscon),
         SizedBox(height: 31),
         AyaloCustomButton(
           context,

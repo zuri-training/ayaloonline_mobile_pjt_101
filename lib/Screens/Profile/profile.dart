@@ -21,6 +21,15 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  TextEditingController fnamecon = TextEditingController();
+  TextEditingController lnamecon = TextEditingController();
+  TextEditingController phonenocon = TextEditingController();
+  TextEditingController acctycon = TextEditingController();
+  TextEditingController gendercon = TextEditingController();
+  TextEditingController businamecon = TextEditingController();
+  TextEditingController busiaddcon = TextEditingController();
+  TextEditingController cacnocon = TextEditingController();
+  TextEditingController verifycon = TextEditingController();
   late _ProfileDetailPages _pages;
 
   @override
@@ -76,25 +85,22 @@ class _ProfileState extends State<Profile> {
   _firstPage() {
     return Column(
       children: [
-        inputForm('First Name', 'Ayalo', null),
+        inputForm('First Name', 'Ayalo', null, fnamecon),
         SizedBox(height: 32),
-        inputForm('Last Name', 'Ogbonna', null),
+        inputForm('Last Name', 'Ogbonna', null, lnamecon),
         SizedBox(height: 32),
-        inputForm('Phone Number', '+234', null),
-        SizedBox(height: 32),
-        inputForm(
-          'Account Type',
-          'Lesse',
-          Icon(
-            Icons.keyboard_arrow_down_outlined,
-          ),
-        ),
+        inputForm('Phone Number', '+234', null, phonenocon),
         SizedBox(height: 32),
         inputForm(
-          'Gender',
-          'Male',
-          Icon(Icons.keyboard_arrow_down_outlined),
-        ),
+            'Account Type',
+            'Lesse',
+            Icon(
+              Icons.keyboard_arrow_down_outlined,
+            ),
+            acctycon),
+        SizedBox(height: 32),
+        inputForm('Gender', 'Male', Icon(Icons.keyboard_arrow_down_outlined),
+            gendercon),
         SizedBox(height: 72),
         AyaloCustomButton(
           context,
@@ -108,17 +114,17 @@ class _ProfileState extends State<Profile> {
   _secondPage() {
     return Column(
       children: [
-        inputForm('Business Name', 'enter your Business Name', null),
+        inputForm(
+            'Business Name', 'enter your Business Name', null, businamecon),
         SizedBox(height: 32),
-        inputForm('Business Address', 'enter your Business Address', null),
-        SizedBox(height: 32),
-        inputForm('CAC No. (if Available)', 'enter your CAC Number', null),
+        inputForm('Business Address', 'enter your Business Address', null,
+            busiaddcon),
         SizedBox(height: 32),
         inputForm(
-          'Method of Verification',
-          'BVN',
-          DropDown(['BVN', 'NIN']),
-        ),
+            'CAC No. (if Available)', 'enter your CAC Number', null, cacnocon),
+        SizedBox(height: 32),
+        inputForm('Method of Verification', 'BVN', DropDown(['BVN', 'NIN']),
+            verifycon),
         SizedBox(height: 72),
         AyaloCustomButton(
           context,

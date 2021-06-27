@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+import 'package:ayalo_mobile_pjt101/api/databaseservice.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,12 +22,30 @@ class _SwitchPages {
 }
 
 class Registration extends StatefulWidget {
+  final String username;
+  final String emailcon;
+  final String passcon;
+  Registration({
+    required this.username,
+    required this.emailcon,
+    required this.passcon,
+  });
+
   @override
   _RegistrationState createState() => _RegistrationState();
 }
 
 class _RegistrationState extends State<Registration> {
   late _SwitchPages _pages;
+  TextEditingController fnamecon = TextEditingController();
+  TextEditingController lnamecon = TextEditingController();
+  TextEditingController phonenocon = TextEditingController();
+  TextEditingController acctycon = TextEditingController();
+  TextEditingController gendercon = TextEditingController();
+  TextEditingController businamecon = TextEditingController();
+  TextEditingController statecon = TextEditingController();
+  TextEditingController occupycon = TextEditingController();
+  TextEditingController verifycon = TextEditingController();
 
   @override
   void initState() {
@@ -81,15 +101,15 @@ class _RegistrationState extends State<Registration> {
   Widget _firstPage(BuildContext context) {
     return Column(
       children: [
-        inputForm('First Name', 'enter your firstname', null),
+        inputForm('First Name', 'enter your firstname', null, fnamecon),
         SizedBox(height: 32),
-        inputForm('Last Name', 'enter your lastname', null),
+        inputForm('Last Name', 'enter your lastname', null, lnamecon),
         SizedBox(height: 32),
-        inputForm('Phone Number', '+234', null),
+        inputForm('Phone Number', '+234', null, phonenocon),
         SizedBox(height: 32),
-        inputForm('Account Type', 'Lesse', Icon(Icons.expand_more)),
+        inputForm('Account Type', 'Lesse', Icon(Icons.expand_more), acctycon),
         SizedBox(height: 32),
-        inputForm('Gender', 'Male', Icon(Icons.expand_more)),
+        inputForm('Gender', 'Male', Icon(Icons.expand_more), gendercon),
         SizedBox(height: 77),
         AyaloCustomButton(context,
             text: 'Continue',
@@ -101,16 +121,35 @@ class _RegistrationState extends State<Registration> {
   Widget _secondPage(BuildContext context, [LogStatus? logStatus]) {
     return Column(
       children: [
-        inputForm('Occupation', 'enter your occupation', null),
+        inputForm('Occupation', 'enter your occupation', null, occupycon),
         SizedBox(height: 32),
-        inputForm('Select State', 'Lagos', Icon(Icons.expand_more)),
+        inputForm('Select State', 'Lagos', Icon(Icons.expand_more), statecon),
         SizedBox(height: 32),
-        inputForm('Business Name', 'enter your business name', null),
+        inputForm(
+            'Business Name', 'enter your business name', null, businamecon),
         SizedBox(height: 77),
         AyaloCustomButton(
           context,
           text: 'Sign Up',
-          onPressed: () {
+          onPressed: () async {
+            String? uid = await context.read<FlutterFireAuthService>().signUp(
+                  email: widget.emailcon,
+                  password: widget.passcon,
+                );
+            await UserDatabase(uid).upadteUserdetails(
+              username: widget.username,
+              firstname: fnamecon.text.trim(),
+              phoneno: phonenocon.text.trim(),
+              verification: verifycon.text.trim(),
+              lastname: lnamecon.text.trim(),
+              accountType: acctycon.text.trim(),
+              gender: gendercon.text.trim(),
+              occupation: occupycon.text.trim(),
+              state: statecon.text.trim(),
+              businessname: businamecon.text.trim(),
+            );
+            //context: context);
+
             int count = 0;
             logStatus!.loggedIn(true);
             Navigator.of(context).popUntil((route) => count++ == 2);

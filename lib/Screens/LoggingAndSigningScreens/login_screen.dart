@@ -1,22 +1,26 @@
-import 'dart:ffi';
-
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
+  TextEditingController emailcon = TextEditingController();
+  TextEditingController passcon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final logStatus = Provider.of<LogStatus>(context);
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(14.0),
@@ -41,9 +45,9 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700),
               ),
               SizedBox(height: 40),
-              inputForm('Email', 'user@domain.com', null),
+              inputForm('Email', 'user@domain.com', null, emailcon),
               SizedBox(height: 16),
-              passwordForm(hint: 'Input Password'),
+              passwordForm(hint: 'Input Password', controller: passcon),
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.topRight,
@@ -67,7 +71,27 @@ class LoginScreen extends StatelessWidget {
               AyaloCustomButton(
                 context,
                 text: 'Log In',
-                onPressed: () => logStatus.loggedIn(true),
+                onPressed: () async {
+                  await context.read<FlutterFireAuthService>().signIn(
+                        email: emailcon.text.trim(),
+                        password: passcon.text.trim(),
+                      );
+                  //}
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                  );
+                  /*Navigator.replace(context,
+                          oldRoute: oldRoute, newRoute: newRoute)(
+                      context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                      );*/
+
+                  // logStatus.loggedIn(true);
+                },
               ),
               SizedBox(height: 25),
               GestureDetector(

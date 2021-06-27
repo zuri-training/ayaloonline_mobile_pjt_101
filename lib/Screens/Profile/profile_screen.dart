@@ -7,6 +7,7 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/notification.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/profile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,12 @@ class ProfileHome extends StatelessWidget {
                     context,
                     text: 'Logout',
                     color: Theme.of(context).backgroundColor,
-                    onPressed: () => logStatus.loggedIn(false),
+                    onPressed: () async {
+                      await context.read<FlutterFireAuthService>().signOut();
+
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('login', (route) => false);
+                    },
                   ),
                 ],
               ),

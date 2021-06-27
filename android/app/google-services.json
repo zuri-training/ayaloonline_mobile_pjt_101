@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "319181331133",
+    "project_id": "ayaloonnline",
+    "storage_bucket": "ayaloonnline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319181331133:android:dcf083a13ffdf8f4a0f5d4",
+        "android_client_info": {
+          "package_name": "com.odinachi.ayalo_mobile_pjt101"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319181331133-68p2ids0hnvjqe2tk8gpqngk2r0u7h3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOJBME5KSmbuYolHnlXXyGRo4-dVZTZQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319181331133-68p2ids0hnvjqe2tk8gpqngk2r0u7h3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
