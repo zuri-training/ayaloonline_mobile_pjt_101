@@ -1,6 +1,6 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/bottom_navbar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
-import 'package:ayalo_mobile_pjt101/Screens/activity.dart';
+import 'package:ayalo_mobile_pjt101/Screens/activity_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/add_lease_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/cart_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/dashboard_Screen.dart';
