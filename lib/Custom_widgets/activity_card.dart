@@ -34,124 +34,127 @@ class ActivityCard extends StatelessWidget {
       }
     }
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: Image.asset(
-                    'assets/images/img1.png',
-                    width: 100,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Image.asset(
+                      'assets/images/img1.png',
+                      width: 100,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
-                      child: Text(
-                        'Tractor',
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 4.0),
+                        child: Text(
+                          'Tractor',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Text(
+                        'SKU- #AYA110200',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    Text(
-                      'SKU- #AYA110200',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '1 week ago',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Row(
-                  children: [
-                    Text(
-                      'N$price',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 22.0),
-                      child: Icon(FontAwesomeIcons.ellipsisV),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              getStatus(status),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Center(
-                      child: Text(
-                        name,
+                      Text(
+                        '1 week ago',
                         style: TextStyle(
-                            color: Color(0xff53B175),
-                            fontWeight: FontWeight.bold),
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      Text(
+                        'N$price',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 22.0),
+                        child: Icon(FontAwesomeIcons.ellipsisV),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                getStatus(status),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Center(
+                        child: Text(
+                          name,
+                          style: TextStyle(
+                              color: Color(0xff53B175),
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0x2553B175),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Center(
-                      child: Text(
-                        'Qty - $quantity',
-                        style: TextStyle(
-                            color: Color(0xffF79423),
-                            fontWeight: FontWeight.bold),
-                      ),
+                    decoration: BoxDecoration(
+                      color: Color(0x2553B175),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Color(0x25F79423),
-                    borderRadius: BorderRadius.circular(20.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Center(
+                        child: Text(
+                          'Qty - $quantity',
+                          style: TextStyle(
+                              color: Color(0xffF79423),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0x25F79423),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )
-        ],
-      ),
-      height: 150,
-      decoration: BoxDecoration(
-        color: Color(0xffF2F3F2),
-        border: Border.all(width: 1, color: kGreenColor),
-        borderRadius: BorderRadius.circular(20.0),
+              ],
+            )
+          ],
+        ),
+        height: 150,
+        decoration: BoxDecoration(
+          color: Color(0xffF2F3F2),
+          border: Border.all(width: 1, color: kGreenColor),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
       ),
     );
   }

@@ -17,8 +17,8 @@ class IsLeasor with ChangeNotifier {
   bool _isleassor = false;
 
   void changeAccount() {
+    HomePageIndex().setIndex(0);
     _isleassor = !_isleassor;
-    print(_isleassor);
     notifyListeners();
   }
 

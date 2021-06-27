@@ -10,32 +10,23 @@ class ActivityScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ActivityCard(
-                price: '50,000',
-                name: 'Ahmed Kunle',
-                quantity: '5',
-                status: 'pending',
-              ),
+            ActivityCard(
+              price: '50,000',
+              name: 'Ahmed Kunle',
+              quantity: '5',
+              status: 'pending',
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ActivityCard(
-                price: '7,500',
-                name: 'Dayo Olaniyi',
-                quantity: '4',
-                status: 'Returned',
-              ),
+            ActivityCard(
+              price: '7,500',
+              name: 'Dayo Olaniyi',
+              quantity: '4',
+              status: 'Returned',
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ActivityCard(
-                price: '200,000',
-                name: 'Obinna Chigozie',
-                quantity: '2',
-                status: 'shipped',
-              ),
+            ActivityCard(
+              price: '200,000',
+              name: 'Obinna Chigozie',
+              quantity: '2',
+              status: 'shipped',
             ),
           ],
         ),
