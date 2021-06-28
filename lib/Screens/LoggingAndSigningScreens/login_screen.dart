@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
@@ -7,7 +5,9 @@ import 'package:ayalo_mobile_pjt101/Custom_widgets/snack_bar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+import 'package:ayalo_mobile_pjt101/api/databaseservice.dart';
 import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final logStatus = Provider.of<LogStatus>(context);
+    final isLeasor = Provider.of<IsLeasor>(context);
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -114,9 +115,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             .firebaseAuth
                             .currentUser !=
                         null) {
+                      String uid = context
+                          .read<FlutterFireAuthService>()
+                          .firebaseAuth
+                          .currentUser!
+                          .uid;
+                      var info = await UserDatabase(uid).userInfo();
+                      if (info['accountType'] == 'Leasor') {
+                        isLeasor.isLeasor(true);
+                      }
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => Home(),
+                          builder: (context) {
+                            return Home();
+                          },
                         ),
                       );
                     }

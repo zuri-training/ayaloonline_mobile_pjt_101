@@ -14,13 +14,17 @@ class HomePageIndex with ChangeNotifier {
 
 class IsLeasor with ChangeNotifier {
   IsLeasor();
-  bool _isleassor = false;
+  bool _isLeasor = false;
 
   void changeAccount() {
     HomePageIndex().setIndex(0);
-    _isleassor = !_isleassor;
+    _isLeasor = !_isLeasor;
     notifyListeners();
   }
 
-  bool get isLeassor => _isleassor;
+  void isLeasor(bool isLeasor) {
+    _isLeasor = isLeasor;
+  }
+
+  bool get isLeassor => _isLeasor;
 }

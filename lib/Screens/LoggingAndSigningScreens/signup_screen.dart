@@ -62,8 +62,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 37),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
                 children: [
                   Text('By continuing you agree to our ',
                       style: TextStyle(

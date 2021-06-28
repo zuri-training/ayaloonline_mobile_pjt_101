@@ -3,6 +3,7 @@ import 'package:ayalo_mobile_pjt101/Screens/landing_page.dart';
 import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/profile_detail_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,12 @@ void main() async {
       ),
       ChangeNotifierProvider(
         create: (_) => LogStatus(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => IsLeasor(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => VerificationChecker(),
       ),
       Provider<FlutterFireAuthService>(
         create: (_) => FlutterFireAuthService(FirebaseAuth.instance),
