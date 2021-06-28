@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +23,7 @@ class DropDown extends StatefulWidget {
 class _DropDownState extends State<DropDown> {
   late String dropdownValue;
   late _DropdownState _dropDownState;
+  TextEditingController verifycon = TextEditingController();
 
   @override
   void initState() {
@@ -36,24 +36,14 @@ class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(
-      stream: _dropDownState.stream,
-      builder: (context, snapshot) {
-        Widget _toggle() {
-          if (snapshot.data == widget.values[0])
-            return inputForm(
-                'Bank Verification Number (BVN)', 'enter your BVN', null);
-          else if (snapshot.data == widget.values[1])
-            return inputForm(
-                'National Identification Number (NIN)', 'enter your NIN', null);
-          return RefreshProgressIndicator();
-        }
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Method of Verification'),
-            DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
+        stream: _dropDownState.stream,
+        builder: (context, snapshot) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Method of Verification'),
+              DropdownButton<String>(
+                elevation: 0,
                 value: dropdownValue,
                 isExpanded: true,
                 icon: const Icon(Icons.keyboard_arrow_down_outlined),
@@ -70,13 +60,14 @@ class _DropDownState extends State<DropDown> {
                       child: Text(widget.values[1]), value: widget.values[1])
                 ],
               ),
-            ),
-            Divider(height: 0.5, thickness: 0.7, color: Colors.black),
-            SizedBox(height: 32),
-            _toggle(),
-          ],
-        );
-      },
-    );
+              SizedBox(height: 32),
+              snapshot.data! == widget.values[0]
+                  ? inputForm(
+                      'Bank Verification Number (BVN)', 'enter your BVN', null)
+                  : inputForm('National Identification Number (NIN)',
+                      'enter your NIN', null),
+            ],
+          );
+        });
   }
 }

@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class _SetNewPassword {
   StreamController<bool> _streamController = new StreamController<bool>();
@@ -21,6 +24,12 @@ class RecoverPassword extends StatefulWidget {
 
 class _RecoverPasswordState extends State<RecoverPassword> {
   late _SetNewPassword _password;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
+  TextEditingController emailcon = TextEditingController();
+  TextEditingController passcon = TextEditingController();
+  TextEditingController repasscon = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -72,20 +81,39 @@ class _RecoverPasswordState extends State<RecoverPassword> {
           ),
         ),
         SizedBox(height: 31),
-        TextFormField(
+        /*TextFormField(
           decoration: InputDecoration(
+            
               labelText: 'Email',
               labelStyle: TextStyle(
                 fontSize: 16,
                 fontFamily: 'Gilroy',
               ),
               suffixIcon: Icon(Icons.done)),
+        ),*/
+        Form(
+          key: _formKey,
+          child: inputForm(
+            'Email',
+            'Enter your email',
+            Icon(Icons.done),
+            emailcon,
+            keytype: TextInputType.emailAddress,
+          ),
         ),
         SizedBox(height: 31),
         AyaloCustomButton(
           context,
           text: 'Send Link',
-          onPressed: () => _password.setNewPasswordSink.add(true),
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              await context
+                  .read<FlutterFireAuthService>()
+                  .sendPasswordReset(emailcon.text.trim(), context);
+              //_password.setNewPasswordSink.add(true);
+
+            }
+          },
         ),
       ],
     );
@@ -103,10 +131,17 @@ class _RecoverPasswordState extends State<RecoverPassword> {
           ),
         ),
         SizedBox(height: 73),
-        passwordForm(hint: 'Input new password'),
-        SizedBox(height: 31),
-        passwordForm(hint: 'Confirm new password'),
-        SizedBox(height: 31),
+        Form(
+          key: _formKey2,
+          child: Column(
+            children: [
+              passwordForm(hint: 'Input new password', controller: passcon),
+              SizedBox(height: 31),
+              passwordForm(hint: 'Confirm new password', controller: repasscon),
+              SizedBox(height: 31),
+            ],
+          ),
+        ),
         AyaloCustomButton(
           context,
           text: 'Reset Password',

@@ -8,9 +8,7 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/profile.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
-import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
-import 'package:ayalo_mobile_pjt101/state_manager/profile_detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +16,7 @@ import 'package:provider/provider.dart';
 class ProfileHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final indexState = Provider.of<HomePageIndex>(context);
     final logStatus = Provider.of<LogStatus>(context);
     return Padding(
       padding: EdgeInsets.all(14.0),
@@ -45,7 +44,6 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
-                  color: Colors.black,
                   icon: Icons.person_pin,
                   title: 'Profile Details',
                   onTap: () => Navigator.of(context).push(
@@ -56,7 +54,6 @@ class ProfileHome extends StatelessWidget {
                 ),
                 Divider(thickness: 0.5, height: 0.5),
                 ProfileListTile(
-                  color: Colors.black,
                   icon: Icons.shopping_cart_outlined,
                   title: 'My Rents',
                   onTap: () => Navigator.of(context).push(
@@ -135,13 +132,24 @@ class ProfileHome extends StatelessWidget {
                   context,
                   text: 'Logout',
                   color: Theme.of(context).backgroundColor,
-                  onPressed: () => logStatus.loggedIn(false),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+                  onPressed: () async {
+                      await context
+                          .read<FlutterFireAuthService>()
+                          .signOut()
+                          .whenComplete(() {
+                        Navigator.of(context).popAndPushNamed('login');
+                        indexState.setIndex(0);
+                      });
+
+                      /*Navigator.of(context).pushNamedAndRemoveUntil(
+                                'login', (route) => false),*/
+                },
+              ),
+            ],
+          ),
+        )
+      ],
+        ),
     );
   }
 }

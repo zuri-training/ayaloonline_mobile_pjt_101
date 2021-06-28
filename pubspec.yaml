@@ -30,8 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^9.1.0
   provider: ^5.0.0
-  intl: ^0.17.0
-  syncfusion_flutter_charts: ^19.1.69+1
+  firebase_auth: ^1.4.1
+  firebase_core: ^1.3.0
+  cloud_firestore: ^2.2.2
 
 dev_dependencies:
   flutter_test:

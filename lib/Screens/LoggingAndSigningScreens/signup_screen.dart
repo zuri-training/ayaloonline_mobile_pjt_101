@@ -5,6 +5,10 @@ import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/continue_re
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
+  TextEditingController usernamecon = TextEditingController();
+  TextEditingController emailcon = TextEditingController();
+  TextEditingController passwordcon = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +46,21 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25),
-              inputForm('Username', 'input username', null),
-              SizedBox(height: 32),
-              inputForm('Email', 'user@domain.com', null),
-              SizedBox(height: 32),
-              passwordForm(hint: 'Input Password'),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    inputForm('Username', 'input username', null, usernamecon,
+                        keytype: TextInputType.name),
+                    SizedBox(height: 32),
+                    inputForm('Email', 'user@domain.com', null, emailcon,
+                        keytype: TextInputType.emailAddress),
+                    SizedBox(height: 32),
+                    passwordForm(
+                        hint: 'Input Password', controller: passwordcon),
+                  ],
+                ),
+              ),
               SizedBox(height: 37),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -76,16 +90,24 @@ class SignUp extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 25),
-              AyaloCustomButton(
-                context,
-                color: Theme.of(context).primaryColor,
-                text: 'Register',
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Registration(),
-                  ),
-                ),
-              ),
+              AyaloCustomButton(context, text: 'Register', onPressed: () async {
+                /* context.read<FlutterFireAuthService>().signUp(
+                      email: emailcon.text.trim(),
+                      password: passwordcon.text.trim(),
+                      context: context);*/
+                if (_formKey.currentState!.validate()) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Registration(
+                        username: usernamecon.text.trim(),
+                        emailcon: emailcon.text.trim(),
+                        passcon: passwordcon.text.trim(),
+                      ),
+                    ),
+                  );
+                }
+                ;
+              }),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => Navigator.of(context).pop(),

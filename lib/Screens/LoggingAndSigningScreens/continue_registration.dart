@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+import 'package:ayalo_mobile_pjt101/api/databaseservice.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,12 +22,32 @@ class _SwitchPages {
 }
 
 class Registration extends StatefulWidget {
+  final String username;
+  final String emailcon;
+  final String passcon;
+  Registration({
+    required this.username,
+    required this.emailcon,
+    required this.passcon,
+  });
+
   @override
   _RegistrationState createState() => _RegistrationState();
 }
 
 class _RegistrationState extends State<Registration> {
   late _SwitchPages _pages;
+  TextEditingController fnamecon = TextEditingController();
+  TextEditingController lnamecon = TextEditingController();
+  TextEditingController phonenocon = TextEditingController();
+  TextEditingController acctycon = TextEditingController();
+  TextEditingController gendercon = TextEditingController();
+  TextEditingController businamecon = TextEditingController();
+  TextEditingController statecon = TextEditingController();
+  TextEditingController occupycon = TextEditingController();
+  TextEditingController verifycon = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -79,44 +101,81 @@ class _RegistrationState extends State<Registration> {
   }
 
   Widget _firstPage(BuildContext context) {
-    return Column(
-      children: [
-        inputForm('First Name', 'enter your firstname', null),
-        SizedBox(height: 32),
-        inputForm('Last Name', 'enter your lastname', null),
-        SizedBox(height: 32),
-        inputForm('Phone Number', '+234', null),
-        SizedBox(height: 32),
-        inputForm('Account Type', 'Lesse', Icon(Icons.expand_more)),
-        SizedBox(height: 32),
-        inputForm('Gender', 'Male', Icon(Icons.expand_more)),
-        SizedBox(height: 77),
-        AyaloCustomButton(context,
-            text: 'Continue',
-            onPressed: () => _pages.switchPagesSink.add(true)),
-      ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          inputForm('First Name', 'Enter your firstname', null, fnamecon,
+              keytype: TextInputType.name),
+          SizedBox(height: 32),
+          inputForm('Last Name', 'Enter your lastname', null, lnamecon,
+              keytype: TextInputType.name),
+          SizedBox(height: 32),
+          inputForm('Phone Number', '+234', null, phonenocon,
+              keytype: TextInputType.phone),
+          SizedBox(height: 32),
+          inputForm('Account Type', 'Lesse', Icon(Icons.expand_more), acctycon),
+          SizedBox(height: 32),
+          inputForm('Gender', 'Male', Icon(Icons.expand_more), gendercon),
+          SizedBox(height: 77),
+          AyaloCustomButton(context, text: 'Continue', onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              _pages.switchPagesSink.add(true);
+            }
+          }),
+        ],
+      ),
     );
   }
 
   Widget _secondPage(BuildContext context, [LogStatus? logStatus]) {
-    return Column(
-      children: [
-        inputForm('Occupation', 'enter your occupation', null),
-        SizedBox(height: 32),
-        inputForm('Select State', 'Lagos', Icon(Icons.expand_more)),
-        SizedBox(height: 32),
-        inputForm('Business Name', 'enter your business name', null),
-        SizedBox(height: 77),
-        AyaloCustomButton(
-          context,
-          text: 'Sign Up',
-          onPressed: () {
-            int count = 0;
-            logStatus!.loggedIn(true);
-            Navigator.of(context).popUntil((route) => count++ == 2);
-          },
-        ),
-      ],
+    return Form(
+      key: _formKey2,
+      child: Column(
+        children: [
+          inputForm('Occupation', 'enter your occupation', null, occupycon,
+              keytype: TextInputType.text),
+          SizedBox(height: 32),
+          inputForm('Select State', 'Lagos', Icon(Icons.expand_more), statecon),
+          SizedBox(height: 32),
+          inputForm(
+              'Business Name', 'enter your business name', null, businamecon,
+              keytype: TextInputType.name),
+          SizedBox(height: 77),
+          AyaloCustomButton(context, text: 'Sign Up', onPressed: () async {
+            if (_formKey2.currentState!.validate()) {
+              String? uid = await context.read<FlutterFireAuthService>().signUp(
+                  email: widget.emailcon,
+                  password: widget.passcon,
+                  context: context);
+
+              if (context
+                      .read<FlutterFireAuthService>()
+                      .firebaseAuth
+                      .currentUser !=
+                  null) {
+                await UserDatabase(uid).upadteUserdetails(
+                  username: widget.username,
+                  firstname: fnamecon.text.trim(),
+                  phoneno: phonenocon.text.trim(),
+                  verification: verifycon.text.trim(),
+                  lastname: lnamecon.text.trim(),
+                  accountType: acctycon.text.trim(),
+                  gender: gendercon.text.trim(),
+                  occupation: occupycon.text.trim(),
+                  state: statecon.text.trim(),
+                  businessname: businamecon.text.trim(),
+                );
+              }
+              //context: context);
+
+              int count = 0;
+              logStatus!.loggedIn(true);
+              Navigator.of(context).popUntil((route) => count++ == 2);
+            }
+          }),
+        ],
+      ),
     );
   }
 
