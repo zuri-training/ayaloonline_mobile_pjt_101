@@ -1,5 +1,6 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/other_input_form.dart';
 import 'package:ayalo_mobile_pjt101/components/date_picker.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/profile_detail_state.dart';
@@ -27,6 +28,10 @@ class ProductPaymentScreen extends StatelessWidget {
       });
     }
 
+    TextEditingController cardNumController = TextEditingController();
+    TextEditingController cvvController = TextEditingController();
+    TextEditingController deliveryController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(title: Text('Payment Details')),
       body: Padding(
@@ -36,8 +41,8 @@ class ProductPaymentScreen extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 30),
-                inputForm(
-                    'Card Details', 'Card Number', Icon(Icons.credit_card)),
+                inputForm('Card Details', 'Card Number',
+                    Icon(Icons.credit_card), cardNumController),
                 Row(
                   children: [
                     Expanded(
@@ -71,15 +76,18 @@ class ProductPaymentScreen extends StatelessWidget {
                               fontFamily: 'Gilroy',
                             ),
                           ),
-                          inputForm(null, null, null),
+                          otherInputForm(null, null, null, cvvController),
                         ],
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 25),
-                inputForm('Delivery Address',
-                    'enter your Delivery Address address', null),
+                otherInputForm(
+                    'Delivery Address',
+                    'enter your Delivery Address address',
+                    null,
+                    deliveryController),
               ],
             ),
             Column(

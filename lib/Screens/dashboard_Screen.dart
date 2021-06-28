@@ -1,12 +1,9 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/activity_card.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/dashboard_card.dart';
 import 'package:ayalo_mobile_pjt101/components/container_selector.dart';
-import 'package:ayalo_mobile_pjt101/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 List<Widget> dashboardCards = [
   DashboardCard(icon: FontAwesomeIcons.server, text: 'In Stock', count: '50'),

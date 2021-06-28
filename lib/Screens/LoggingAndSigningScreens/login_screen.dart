@@ -1,11 +1,13 @@
 import 'dart:ffi';
 
+import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
-import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/snack_bar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
+import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -121,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     print('Seems validation is not working');
                     print(_formKey.currentState?.validate());
-
                     message(
                         context: context, text: 'One or more field is empty');
                   }

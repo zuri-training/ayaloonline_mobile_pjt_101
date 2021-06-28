@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:flutter/material.dart';
 
@@ -62,10 +63,10 @@ class _DropDownState extends State<DropDown> {
               ),
               SizedBox(height: 32),
               snapshot.data! == widget.values[0]
-                  ? inputForm(
-                      'Bank Verification Number (BVN)', 'enter your BVN', null)
+                  ? inputForm('Bank Verification Number (BVN)',
+                      'enter your BVN', null, verifycon)
                   : inputForm('National Identification Number (NIN)',
-                      'enter your NIN', null),
+                      'enter your NIN', null, verifycon),
             ],
           );
         });
