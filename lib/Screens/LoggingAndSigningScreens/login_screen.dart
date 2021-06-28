@@ -1,20 +1,36 @@
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
+import 'package:ayalo_mobile_pjt101/Custom_widgets/snack_bar.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/recover_password.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/signup_screen.dart';
 import 'package:ayalo_mobile_pjt101/Screens/home.dart';
 import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailcon = TextEditingController();
+
   TextEditingController passcon = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailcon.dispose();
+    passcon.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +61,20 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700),
               ),
               SizedBox(height: 40),
-              inputForm('Email', 'user@domain.com', null, emailcon),
-              SizedBox(height: 16),
-              passwordForm(hint: 'Input Password', controller: passcon),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    inputForm('Email', 'user@domain.com', null, emailcon,
+                        keytype: TextInputType.emailAddress),
+                    SizedBox(height: 16),
+                    passwordForm(
+                      hint: 'Input Password',
+                      controller: passcon,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.topRight,
@@ -72,16 +99,32 @@ class LoginScreen extends StatelessWidget {
                 context,
                 text: 'Log In',
                 onPressed: () async {
-                  await context.read<FlutterFireAuthService>().signIn(
-                        email: emailcon.text.trim(),
-                        password: passcon.text.trim(),
+                  if (_formKey.currentState!.validate()) {
+                    print('Seems validation is working');
+                    await context.read<FlutterFireAuthService>().signIn(
+                          email: emailcon.text.trim(),
+                          password: passcon.text.trim(),
+                          context: context,
+                        );
+                    //}
+                    if (context
+                            .read<FlutterFireAuthService>()
+                            .firebaseAuth
+                            .currentUser !=
+                        null) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ),
                       );
-                  //}
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => Home(),
-                    ),
-                  );
+                    }
+                  } else {
+                    print('Seems validation is not working');
+                    print(_formKey.currentState?.validate());
+
+                    message(
+                        context: context, text: 'One or more field is empty');
+                  }
                   /*Navigator.replace(context,
                           oldRoute: oldRoute, newRoute: newRoute)(
                       context,

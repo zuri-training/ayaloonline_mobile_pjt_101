@@ -18,6 +18,8 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (context.read<FlutterFireAuthService>().firebaseAuth.currentUser ==
         null) {
+      print(
+          'Current user ${context.read<FlutterFireAuthService>().firebaseAuth.currentUser}');
       return LoginScreen();
     }
     return Home();

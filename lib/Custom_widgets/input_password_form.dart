@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
-Widget passwordForm(
-    {required String hint, required TextEditingController controller}) {
+Widget passwordForm({
+  required String hint,
+  required TextEditingController controller,
+}) {
   return TextFormField(
     controller: controller,
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Please enter some text';
+      } else if (value.length < 6) {
+        return 'Password has to  be more than 6 characters';
+      }
+      return null;
+    },
     obscureText: true,
     decoration: InputDecoration(
       labelText: 'Password',

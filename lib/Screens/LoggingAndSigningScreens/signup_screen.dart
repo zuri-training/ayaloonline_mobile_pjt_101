@@ -2,14 +2,13 @@ import 'package:ayalo_mobile_pjt101/Custom_widgets/input_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/input_password_form.dart';
 import 'package:ayalo_mobile_pjt101/Custom_widgets/custom_button.dart';
 import 'package:ayalo_mobile_pjt101/Screens/LoggingAndSigningScreens/continue_registration.dart';
-import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
   TextEditingController usernamecon = TextEditingController();
   TextEditingController emailcon = TextEditingController();
   TextEditingController passwordcon = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,11 +46,21 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 25),
-              inputForm('Username', 'input username', null, usernamecon),
-              SizedBox(height: 32),
-              inputForm('Email', 'user@domain.com', null, emailcon),
-              SizedBox(height: 32),
-              passwordForm(hint: 'Input Password', controller: passwordcon),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    inputForm('Username', 'input username', null, usernamecon,
+                        keytype: TextInputType.name),
+                    SizedBox(height: 32),
+                    inputForm('Email', 'user@domain.com', null, emailcon,
+                        keytype: TextInputType.emailAddress),
+                    SizedBox(height: 32),
+                    passwordForm(
+                        hint: 'Input Password', controller: passwordcon),
+                  ],
+                ),
+              ),
               SizedBox(height: 37),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,15 +90,12 @@ class SignUp extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 25),
-              AyaloCustomButton(
-                context,
-                text: 'Register',
-                onPressed: () async {
-                  /* context.read<FlutterFireAuthService>().signUp(
+              AyaloCustomButton(context, text: 'Register', onPressed: () async {
+                /* context.read<FlutterFireAuthService>().signUp(
                       email: emailcon.text.trim(),
                       password: passwordcon.text.trim(),
                       context: context);*/
-
+                if (_formKey.currentState!.validate()) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => Registration(
@@ -99,8 +105,9 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                   );
-                },
-              ),
+                }
+                ;
+              }),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => Navigator.of(context).pop(),

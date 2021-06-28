@@ -9,6 +9,7 @@ import 'package:ayalo_mobile_pjt101/Screens/Profile/rents.dart';
 import 'package:ayalo_mobile_pjt101/Screens/Profile/verification.dart';
 import 'package:ayalo_mobile_pjt101/api/generate_profile.dart';
 import 'package:ayalo_mobile_pjt101/constants/colors.dart';
+import 'package:ayalo_mobile_pjt101/state_manager/home_toggle.dart';
 import 'package:ayalo_mobile_pjt101/state_manager/log_status.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,6 +18,7 @@ import 'package:provider/provider.dart';
 class ProfileHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final indexState = Provider.of<HomePageIndex>(context);
     final logStatus = Provider.of<LogStatus>(context);
     return Padding(
         padding: EdgeInsets.all(14.0),
@@ -121,10 +123,16 @@ class ProfileHome extends StatelessWidget {
                     text: 'Logout',
                     color: Theme.of(context).backgroundColor,
                     onPressed: () async {
-                      await context.read<FlutterFireAuthService>().signOut();
+                      await context
+                          .read<FlutterFireAuthService>()
+                          .signOut()
+                          .whenComplete(() {
+                        Navigator.of(context).popAndPushNamed('login');
+                        indexState.setIndex(0);
+                      });
 
-                      Navigator.of(context)
-                          .pushNamedAndRemoveUntil('login', (route) => false);
+                      /*Navigator.of(context).pushNamedAndRemoveUntil(
+                                'login', (route) => false),*/
                     },
                   ),
                 ],

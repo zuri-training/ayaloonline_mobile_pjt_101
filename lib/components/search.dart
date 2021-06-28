@@ -7,6 +7,7 @@ class HomeSearch extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Container(
         child: TextField(
+            cursorColor: Colors.green,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
@@ -17,6 +18,7 @@ class HomeSearch extends StatelessWidget {
                 color: Colors.black,
                 fontFamily: 'Gilroy',
               ),
+              //suffix: Icon(Icons.search_rounded),
               suffixIcon: Icon(Icons.search_rounded),
             )),
         decoration: BoxDecoration(
